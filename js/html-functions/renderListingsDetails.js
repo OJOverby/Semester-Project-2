@@ -1,12 +1,12 @@
 
-import { fetchListing } from "./../api-calls/fetchListing";
+import { fetchListing } from "./../api-calls/fetchListing.js";
 
 export async function renderListingsDetails(itemID) {
-  if (!postID) {
+  if (!itemID) {
     console.error("No post ID provided");
     return;
   }
-  const endpoint = `/auction/listings/${itemID}`;
+  const endpoint = "/auction/listings/"+itemID+"?_bids=true";
   try {
     const item = await fetchListing(endpoint);
     const container = document.querySelector(".item-container");
@@ -15,9 +15,10 @@ export async function renderListingsDetails(itemID) {
       console.error("Container not found");
       return;
     }
+    console.log(item);
     
     container.innerHTML = `
-      <h3>${item?.title || 'Untitled post'}</h3>
+      <h3>${item.data.title || 'Untitled post'}</h3>
     `;
   } catch (error) {
     console.error("Failed to fetch listing:", error);
