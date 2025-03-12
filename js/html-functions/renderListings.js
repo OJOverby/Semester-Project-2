@@ -1,37 +1,24 @@
 import { auctionCountdown } from "../functions/auctionCountdown.js";
-import { getPopularTags } from "../functions/getPopularTags.js";
-import { fetchListings } from "./../api-calls/fetchListings.js";
+import { fetchListings } from "../api-calls/fetchListings.js";
 
 export async function renderListings() {
-  let listings = await fetchListings();
-  const container = document.querySelector(".listings-container");
+  const listings = await fetchListings();
+  const container = document.querySelector(".grid-container");
 
   container.innerHTML = `
-    <div class="relative">
-      <button class="prev-arrow absolute left-2 top-1/2 transform -translate-y-1/2 z-10 bg-white p-2 rounded-full shadow-md hover:bg-gray-100">
-        ◀
-      </button>
-      <div class="carousel-container flex overflow-x-auto snap-x snap-mandatory space-x-4 p-4">
-      </div>
-      <button class="next-arrow absolute right-2 top-1/2 transform -translate-y-1/2 z-10 bg-white p-2 rounded-full shadow-md hover:bg-gray-100">
-        ▶
-      </button>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 p-4">
     </div>
   `;
 
-  const carousel = container.querySelector(".carousel-container");
+  const grid = container.querySelector(".grid");
 
-  listings.forEach(function (listing) {
+  listings.forEach((listing) => {
     const listingElement = document.createElement("div");
     listingElement.classList.add(
-      "snap-start",
-      "min-w-[70%]",
-      "md:min-w-[30%]",
       "p-4",
       "bg-white",
       "shadow-md",
       "rounded-lg",
-      "relative",
       "hover:shadow-lg",
       "transition-shadow",
       "duration-300",
@@ -39,32 +26,19 @@ export async function renderListings() {
       "flex-col",
       "items-center"
     );
+
     listingElement.innerHTML = `
-      <div>
-        <a href="/item/index.html?id=${listing.id}" class="text-xl font-semibold text-blue-600 hover:underline">
-          ${listing.title}
-          <img src="${listing.media[0]?.url || './../../images/placeholder.jpeg'}" alt="Listing image" class="w-40 h-40 object-cover rounded-md mt-2">
-        </a>
-      </div>
-      <p class="text-gray-600">Ends at: ${listing.endsAt}</p>
+      <a href="/item/index.html?id=${listing.id}" class="text-lg font-semibold text-blue-600 hover:underline text-center">
+        ${listing.title}
+        <img src="${listing.media[0]?.url || './../../images/placeholder.jpeg'}" alt="Listing image" class="w-full h-48 object-cover rounded-md mt-2">
+      </a>
+      <p class="text-gray-600 mt-2">Ends at: ${listing.endsAt}</p>
       <p class="countdown text-red-500"></p>
     `;
 
     const countdown = listingElement.querySelector(".countdown");
     auctionCountdown(listing.endsAt, countdown);
 
-    carousel.appendChild(listingElement);
-  });
-
-  // Add functionality to scroll the carousel using the arrows
-  const prevArrow = container.querySelector(".prev-arrow");
-  const nextArrow = container.querySelector(".next-arrow");
-
-  prevArrow.addEventListener("click", () => {
-    carousel.scrollBy({ left: -carousel.offsetWidth / 2, behavior: "smooth" });
-  });
-
-  nextArrow.addEventListener("click", () => {
-    carousel.scrollBy({ left: carousel.offsetWidth / 2, behavior: "smooth" });
+    grid.appendChild(listingElement);
   });
 }

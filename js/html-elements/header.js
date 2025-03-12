@@ -19,8 +19,8 @@ export function header() {
           </button>
         </form>
         <a href="/index.html" class="hover:text-gray-300 transition">Home</a>
-        <a href="#" class="hover:text-gray-300 transition">Listings</a>
-        <a href="#" class="hover:text-gray-300 transition">Log In</a>  
+        <a href="/listings/index.html" class="hover:text-gray-300 transition">Listings</a>
+        <a href="/login/index.html" class="hover:text-gray-300 transition">Log In</a>  
       </nav>
     </div>
     `
