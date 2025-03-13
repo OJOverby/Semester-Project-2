@@ -7,7 +7,7 @@ import { footer } from "./html-elements/footer.js";
 import { renderListings } from "./html-functions/renderListings.js";
 import { tagListings } from "./html-functions/tagListings.js";
 import { searchListings } from "./html-functions/searchListings.js";
-
+import { loginListner } from "./functions/handleLogin.js"
 
 
 header();
@@ -40,4 +40,10 @@ if (path === "/" || path === "/index.html") {
 
 } else if (path.startsWith("/search")) {
     searchListings();
+} else if (path.startsWith("/login")) {
+    loginListner();
 } 
+
+
+
+

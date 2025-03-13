@@ -3,10 +3,57 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./../css/style.css" />
     <title>Document</title>
 </head>
 <body>
     <header id="header"></header>
-    <main></main>
+    <main>
+        <div class="mt-6 flex justify-center">
+            <div class="w-2/3 md:w-1/3 bg-gray-100 p-4 rounded">
+              <form class="login-form space-y-4" id="loginForm">
+                <h2 class="text-2xl font-bold text-center">Log in</h2>
+          
+                <div>
+                  <label for="email" class="block font-medium">E-mail</label>
+                  <input
+                    type="email"
+                    id="email"
+                    class="w-full border rounded p-2"
+                    placeholder="Email"
+                    required
+                  />
+                </div>
+          
+                <div>
+                  <label for="password" class="block font-medium">Password</label>
+                  <input
+                    type="password"
+                    id="password"
+                    class="w-full border rounded p-2"
+                    placeholder="Password"
+                    required
+                    minlength="8"
+                  />
+                </div>
+          
+                <div class="flex flex-col gap-2">
+                  <a href="/index.html">
+                    <button class="w-full bg-blue-500 hover:bg-blue-600 text-white p-2 rounded" type="submit">
+                      Login
+                    </button>
+                  </a>
+                  <a href="/register/index.html">
+                    <button class="w-full bg-gray-300 hover:bg-gray-400 text-black p-2 rounded" type="button">
+                      Register account
+                    </button>
+                  </a>
+                </div>
+              </form>
+            </div>
+          </div>
+    </main>
+    <footer id="footer"></footer>
 </body>
+<script type="module" src="../js/app.js"></script>
 </html>
