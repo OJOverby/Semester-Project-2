@@ -1,0 +1,2 @@
+test.mctesty@noroff.no
+testpassword

@@ -13,6 +13,7 @@ export async function loginUser (email, password) {
     const { accessToken, ...profile } = (await response.json()).data;
     save("token", accessToken);
     save("profile", profile);
+    console.log("Login OK");
     return profile
   }
  throw new Error("Could not login");

@@ -8,7 +8,7 @@ export async function handleLogin(event) {
     const password = event.target.password.value;
     console.log(email)
     await loginUser(email, password);
-    window.location.href = "./index.html";
+    //window.location.href = "./index.html";
 };
 
 export function loginListner () {
