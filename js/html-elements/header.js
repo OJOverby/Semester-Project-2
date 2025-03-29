@@ -23,7 +23,7 @@ export function header() {
           name="search"
           />
           <button type="submit" id="search-button" class="bg-transparent border-0">
-            <i class="bi bi-search text-black">S</i>
+            <img  class="searchicon h-5 w-5" src="../images/search.svg" alt="Search button">
           </button>
         </form>
         <a href="/index.html" class="hover:text-gray-300 transition">Home</a>

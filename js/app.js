@@ -8,6 +8,8 @@ import { renderListings } from "./html-functions/renderListings.js";
 import { tagListings } from "./html-functions/tagListings.js";
 import { searchListings } from "./html-functions/searchListings.js";
 import { loginListner } from "./functions/handleLogin.js"
+import { renderMyProfile } from "./html-functions/renderMyProfile.js";
+
 
 
 header();
@@ -42,6 +44,8 @@ if (path === "/" || path === "/index.html") {
     searchListings();
 } else if (path.startsWith("/login")) {
     loginListner();
+} else if (path.startsWith("/profile")) {
+    renderMyProfile();
 } 
 
 
