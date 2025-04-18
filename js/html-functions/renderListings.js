@@ -1,9 +1,9 @@
 import { auctionCountdown } from "../functions/auctionCountdown.js";
 import { fetchListings } from "../api-calls/fetchListings.js";
 
-export async function renderListings() {
-  const listings = await fetchListings();
-  const container = document.querySelector(".tags-container");
+export async function renderListings(APIfetch) {
+  const listings = APIfetch;
+  const container = document.querySelector(".grid-container");
 
   container.innerHTML = `
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6 p-4">

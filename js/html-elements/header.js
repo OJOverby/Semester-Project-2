@@ -9,6 +9,10 @@ export function header() {
     ? '<a href="/profile/index.html" class="hover:text-gray-300 transition">Profile</a>'
     : '<a href="/login/index.html" class="hover:text-gray-300 transition">Log In</a>';
 
+    const createAuctionLink = token
+    ? '<a href="/createauction/index.html" class="hover:text-gray-300 transition">Create Auction</a>'
+    : '';
+
     header.innerHTML = `
     <div class="flex items-center px-4 w-full shadow-md">
       <h1 class="text-2xl font-semibold whitespace-nowrap">Auction House</h1>
@@ -28,6 +32,7 @@ export function header() {
         </form>
         <a href="/index.html" class="hover:text-gray-300 transition">Home</a>
         <a href="/listings/index.html" class="hover:text-gray-300 transition">Listings</a>
+        ${createAuctionLink}  
         ${profileLoginLink}  
       </nav>
     </div>

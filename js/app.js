@@ -12,6 +12,7 @@ import { renderMyProfile } from "./html-functions/renderMyProfile.js";
 
 
 
+
 header();
 footer();
 
@@ -35,10 +36,11 @@ if (path === "/" || path === "/index.html") {
     };
 
 } else if (path.startsWith("/listings")) {
-    renderListings();
+    renderListings(await fetchListings());
 
 } else if (path.startsWith("/tags")) {
     tagListings();
+    
 
 } else if (path.startsWith("/search")) {
     searchListings();
