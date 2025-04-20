@@ -10,8 +10,8 @@ import { searchListings } from "./html-functions/searchListings.js";
 import { loginListner } from "./functions/handleLogin.js"
 import { renderMyProfile } from "./html-functions/renderMyProfile.js";
 import { auctionListener } from "./functions/handleAuction.js";
-import { handleLogout } from "./functions/handleLogout.js";
 
+// Renders the header and the footer present at all sites
 header();
 footer();
 
@@ -22,10 +22,12 @@ console.log(listings);
 const path = window.location.pathname;
 console.log(path);
 
+
 if (path === "/" || path === "/index.html") {
     renderListingsCarousel();
     renderTagsList();
-} else if (path.startsWith("/item")) {
+} 
+else if (path.startsWith("/item")) {
     const queryString = document.location.search;
     const params = new URLSearchParams(queryString);
     const id = params.get("id");
@@ -34,19 +36,17 @@ if (path === "/" || path === "/index.html") {
         renderListingsDetails(id);
     };
 
-} else if (path.startsWith("/listings")) {
+} 
+else if (path.startsWith("/listings")) {
     renderListings(await fetchListings());
-
 } else if (path.startsWith("/tags")) {
     tagListings(); 
-
 } else if (path.startsWith("/search")) {
     searchListings();
 } else if (path.startsWith("/login")) {
     loginListner();
 } else if (path.startsWith("/profile")) {
     renderMyProfile();
-    handleLogout();
 } else if (path.startsWith("/createauction")) {
     auctionListener();
 } 
