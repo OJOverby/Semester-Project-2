@@ -8,7 +8,10 @@ export async function searchListings(){
     const searchEndpoint = endpoint + searchTerm;
 
     const listings = await fetchListing(searchEndpoint);
-    renderListings(listings.data);
-    console.log(listings);
+
+    const now = new Date();
+    const activeListings = listings.data.filter(listing => new Date(listing.endsAt) > now);
+    renderListings(activeListings);
+    console.log(activeListings);
 
 }

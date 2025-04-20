@@ -1,6 +1,8 @@
 
 import { findHighestBid } from "../functions/findHighestBid.js";
 import { fetchListing } from "./../api-calls/fetchListing.js";
+import { load } from "../functions/load.js";
+import {placeBid} from "./../api-calls/placeBid.js";
 
 export async function renderListingsDetails(itemID) {
   if (!itemID) {
@@ -20,6 +22,11 @@ export async function renderListingsDetails(itemID) {
     }
     console.log(item);
     console.log(item.data.bids);
+        const token = load("token");
+    
+        const bidButton = token
+        ? '<button id="openBidModal" type="button" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Place bid</button>'
+        : '';
 
     
     container.innerHTML = `
@@ -29,10 +36,48 @@ export async function renderListingsDetails(itemID) {
           <h3 class="text-2xl font-semibold mb-2">${item.data.title || 'Untitled Post'}</h3>
           <p class="text-gray-600">${item.data.description || 'Missing description'}</p>
           <p class="text-gray-600">Highest bid: ${highestBid}</p>
+            ${bidButton}  
         </div>
       </div>
     `;
+
+    const openModalBtn = document.getElementById("openBidModal");
+    const closeModalBtn = document.getElementById("closeBidModal");
+    const bidModal = document.getElementById("bidModal");
+    const submitBidButton = document.getElementById("submitBid");
+    const bidAmountInput = document.getElementById("amount");
+
+    if (openModalBtn && closeModalBtn && submitBidButton && bidModal && bidAmountInput) {
+      openModalBtn.addEventListener("click", () => {
+        bidModal.classList.remove("hidden");
+      });
+
+      closeModalBtn.addEventListener("click", () => {
+        bidModal.classList.add("hidden");
+        bidAmountInput.value = "";
+      });
+
+      submitBidButton.addEventListener("click", async () => {
+        const amount = parseFloat(bidAmountInput.value);
+        if (isNaN(amount) || amount <= 0) {
+          alert("Please enter a valid bid amount.");
+          return;
+        }
+
+        try {
+          await placeBid(itemID, amount);
+          alert("Bid placed successfully!");
+          bidModal.classList.add("hidden");
+          bidAmountInput.value = "";
+          renderListingsDetails(itemID); 
+        } catch (err) {
+          alert("Failed to place bid. Try again.");
+          console.error(err);
+        }
+      });
+    }
   } catch (error) {
     console.error("Failed to fetch listing:", error);
   }
+  
 }

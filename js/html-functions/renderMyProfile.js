@@ -12,16 +12,19 @@ export async function renderMyProfile() {
       throw new Error('Profile data is missing in the response.');
     }
     const profileContainer = document.querySelector(".profile-container");
+    console.log(response);
+
     const { data } = response;
 
     const profileContent = `
-      <div class="max-w-3xl mx-auto p-4 bg-gray-50 rounded-lg shadow-md">
-        <img src="${data.banner.url}" alt="${data.banner.alt}" class="w-full h-48 object-cover rounded-t-lg">
-        <div class="flex items-center -mt-12 ml-4">
+      <div class="relative max-w-3xl mx-auto p-4 bg-gray-50 rounded-lg shadow-md">
+         <button id="logoutButton" class="absolute top-4 right-4 bg-red-500 hover:bg-red-600 text-white text-sm px-4 py-2 rounded">
+          Logout
+        </button>
+        <div class="flex items-center mt-0 ml-4">
           <img src="${data.avatar.url}" alt="${data.avatar.alt}" class="w-24 h-24 rounded-full border-4 border-white shadow-lg">
           <div class="ml-4">
             <h1 class="text-2xl font-bold">${data.name}</h1>
-            <p class="text-gray-600">${data.bio}</p>
             <p class="mt-2"><strong>Credits:</strong> ${data.credits}</p>
           </div>
         </div>

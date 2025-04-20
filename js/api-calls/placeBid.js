@@ -1,6 +1,6 @@
-import { BASE_API } from "../../api/api.js";
-import { load } from "../../functions/load.js";
-import { API_KEY } from "../../api/api-key.js";
+import { BASE_API } from "../api/api.js";
+import { load } from "../functions/load.js";
+import { API_KEY } from "../api/api-key.js";
 
 export async function placeBid (id, amount) {
   const endpoint = "/auction/listings/"+id+"/bids"
