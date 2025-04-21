@@ -64,7 +64,7 @@ export async function renderMyProfile() {
           Logout
         </button>
         <div class="flex items-center mt-0 ml-4">
-          <img src="${data.avatar.url}" alt="${data.avatar.alt}" class="w-24 h-24 rounded-full border-4 border-white shadow-lg">
+          <img src="${data.avatar.url}" alt="${data.avatar.alt}" id="avatar-img" class="w-24 h-24 rounded-full border-4 border-white shadow-lg">
           <div class="ml-4">
             <h1 class="text-2xl font-bold">${data.name}</h1>
             <p class="mt-2"><strong>Credits:</strong> ${data.credits}</p>
@@ -92,9 +92,61 @@ export async function renderMyProfile() {
           </table>
         </div>
       </div>
+
+      <!-- Avatar Modal -->
+<div id="avatar-modal" class="fixed inset-0 z-50 hidden bg-black bg-opacity-50 backdrop-blur-sm flex items-center justify-center">
+  <div class="bg-white p-6 rounded-2xl shadow-xl w-full max-w-md relative">
+    <button id="close-modal" class="absolute top-3 right-3 text-gray-500 hover:text-gray-800 text-2xl font-bold">&times;</button>
+    <div class="text-center">
+      <img id="modal-avatar" src="${data.avatar.url}" alt="${data.avatar.alt}" class="mx-auto w-32 h-32 rounded-full border-4 border-gray-200 shadow mb-4">
+      <button id="change-avatar-btn" class="bg-blue-600 hover:bg-blue-700 text-white font-medium px-4 py-2 rounded-lg transition">
+        Change Avatar
+      </button>
+      <div id="avatar-input-container" class="mt-4 hidden">
+        <input type="url" id="new-avatar-url" placeholder="New avatar URL..." class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400 mb-2">
+        <button id="save-avatar" class="w-full bg-green-600 hover:bg-green-700 text-white font-medium py-2 rounded-lg transition">
+          Save Avatar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
     `;
 
     profileContainer.innerHTML = profileContent;
+    const avatarImg = document.getElementById("avatar-img");
+const modal = document.getElementById("avatar-modal");
+const closeModalBtn = document.getElementById("close-modal");
+const changeAvatarBtn = document.getElementById("change-avatar-btn");
+const avatarInputContainer = document.getElementById("avatar-input-container");
+const saveAvatarBtn = document.getElementById("save-avatar");
+const newAvatarInput = document.getElementById("new-avatar-url");
+const modalAvatar = document.getElementById("modal-avatar");
+
+avatarImg.addEventListener("click", () => {
+  modal.classList.remove("hidden");
+});
+
+closeModalBtn.addEventListener("click", () => {
+  modal.classList.add("hidden");
+  avatarInputContainer.classList.add("hidden");
+  newAvatarInput.value = "";
+});
+
+changeAvatarBtn.addEventListener("click", () => {
+  avatarInputContainer.classList.toggle("hidden");
+});
+
+saveAvatarBtn.addEventListener("click", () => {
+  const newUrl = newAvatarInput.value.trim();
+  if (newUrl) {
+    avatarImg.src = newUrl;
+    modalAvatar.src = newUrl;
+    avatarInputContainer.classList.add("hidden");
+    newAvatarInput.value = "";
+  }
+});
 
 
     document.querySelectorAll(".countdown").forEach(span => {
