@@ -9,4 +9,6 @@ export async function tagListings(){
 
     const listings = await fetchListing(tagEndpoint);
     renderListings(listings.data);
+    const siteTitle = tagTerm;
+    document.title = `${siteTitle} - Bidlify`;
 }

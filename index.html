@@ -4,11 +4,32 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/style.css" />
-    <title><span id="tag-name"></span> - Bidlify</title>
+    <title>Home - Bidlify</title>
 </head>
 <body class="min-h-screen flex flex-col">
     <header id="header" class="mb-3"></header>
     <main class="flex-1">
+      <section class="relative w-full h-96 mb-6 flex items-center justify-between bg-cover bg-center px-8" style="background-image: url('../images/treasure.jpg');">
+        <div class="w-1/2"></div>
+        <div class="w-1/2 flex flex-col items-start justify-center space-y-4">
+            <h1 class="text-white text-2xl font-bold">Your junk could be another man's treasure</h1>
+            <form class="flex items-center w-full max-w-md" action="/search/index.html" method="get">
+                <input
+                    class="form-input flex-1 px-4 py-2 rounded-l-full border border-gray-300 focus:outline-none focus:border-blue-500"
+                    type="search"
+                    placeholder="Search for treasure"
+                    aria-label="Search"
+                    id="search-input"
+                    name="search"
+                />
+                <button type="submit" id="search-button" class="bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded-r-full">
+                    Search
+                </button>
+            </form>
+        </div>
+    </section>
+    
+    
         <div class="tags-container flex flex-wrap justify-center items-center"></div>
         <div class="listings-container">
             <div class="flex justify-center items-center min-h-screen">

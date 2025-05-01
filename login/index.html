@@ -6,52 +6,48 @@
     <link rel="stylesheet" href="./../css/style.css" />
     <title>Login - Bidlify</title>
 </head>
-<body>
+<body class="min-h-screen flex flex-col">
     <header id="header"></header>
-    <main>
-        <div class="mt-6 flex justify-center">
-            <div class="w-2/3 md:w-1/3 bg-gray-100 p-4 rounded">
-              <form class="login-form space-y-4" id="loginForm">
+    <main class="flex-1 flex justify-center items-center">
+        <div class="w-2/3 md:w-1/3 bg-gray-100 p-4 rounded">
+            <form class="login-form space-y-4" id="loginForm">
                 <h2 class="text-2xl font-bold text-center">Log in</h2>
-          
+
                 <div>
-                  <label for="email" class="block font-medium">E-mail</label>
-                  <input
-                    type="email"
-                    id="email"
-                    class="w-full border rounded p-2"
-                    placeholder="Email"
-                    required
-                  />
+                    <label for="email" class="block font-medium">E-mail</label>
+                    <input
+                        type="email"
+                        id="email"
+                        class="w-full border rounded p-2"
+                        placeholder="Email"
+                        required
+                    />
                 </div>
-          
+
                 <div>
-                  <label for="password" class="block font-medium">Password</label>
-                  <input
-                    type="password"
-                    id="password"
-                    class="w-full border rounded p-2"
-                    placeholder="Password"
-                    required
-                    minlength="8"
-                  />
+                    <label for="password" class="block font-medium">Password</label>
+                    <input
+                        type="password"
+                        id="password"
+                        class="w-full border rounded p-2"
+                        placeholder="Password"
+                        required
+                        minlength="8"
+                    />
                 </div>
-          
+
                 <div class="flex flex-col gap-2">
-                  <a href="/index.html">
-                    <button class="w-full bg-blue-500 hover:bg-blue-600 text-white p-2 rounded" type="submit">
-                      Login
+                    <button class="w-full bg-black hover:bg-gray-800 text-white p-2 rounded" type="submit">
+                        Login
                     </button>
-                  </a>
-                  <a href="/register/index.html">
-                    <button class="w-full bg-gray-300 hover:bg-gray-400 text-black p-2 rounded" type="button">
-                      Register account
-                    </button>
-                  </a>
+                    <a href="/register/index.html">
+                        <button class="w-full bg-gray-300 hover:bg-gray-400 text-black p-2 rounded" type="button">
+                            Register account
+                        </button>
+                    </a>
                 </div>
-              </form>
-            </div>
-          </div>
+            </form>
+        </div>
     </main>
     <footer id="footer"></footer>
 </body>
