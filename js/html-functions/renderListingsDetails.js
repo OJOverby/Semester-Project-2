@@ -3,6 +3,7 @@ import { findHighestBid } from "../functions/findHighestBid.js";
 import { fetchListing } from "./../api-calls/fetchListing.js";
 import { load } from "../functions/load.js";
 import {placeBid} from "./../api-calls/placeBid.js";
+import { auctionCountdown } from "../functions/auctionCountdown.js";
 
 export async function renderListingsDetails(itemID) {
   if (!itemID) {
@@ -14,6 +15,8 @@ export async function renderListingsDetails(itemID) {
     const item = await fetchListing(endpoint);
     const container = document.querySelector(".item-container");
     const highestBid = findHighestBid(item.data.bids);
+    const siteTitle = item.data.title;
+    document.title = `${siteTitle} - Bidlify`;
     
   
     if (!container) {
@@ -25,21 +28,24 @@ export async function renderListingsDetails(itemID) {
         const token = load("token");
     
         const bidButton = token
-        ? '<button id="openBidModal" type="button" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Place bid</button>'
+        ? '<button id="openBidModal" type="button" class="bg-black hover:bg-gray-800 text-white font-bold py-2 px-4 rounded">Place bid</button>'
         : '';
 
-    
     container.innerHTML = `
          <div class="flex max-w-3xl shadow-lg rounded-xl overflow-hidden bg-white">
         <img class="w-1/2 object-cover" src="${item.data.media[0]?.url || './../../images/placeholder.jpeg'}" alt="Listing image">
         <div class="w-1/2 p-6 flex flex-col justify-center">
           <h3 class="text-2xl font-semibold mb-2">${item.data.title || 'Untitled Post'}</h3>
           <p class="text-gray-600">${item.data.description || 'Missing description'}</p>
-          <p class="text-gray-600">Highest bid: ${highestBid}</p>
+          <p class="text-gray-600">Highest bid: ${highestBid || 'No bids yet'}</p>
+          <p class="countdown text-red-500"></p>
+
             ${bidButton}  
         </div>
       </div>
     `;
+    const countdown = container.querySelector(".countdown");
+    auctionCountdown(item.data.endsAt, countdown);
 
     const openModalBtn = document.getElementById("openBidModal");
     const closeModalBtn = document.getElementById("closeBidModal");

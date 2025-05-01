@@ -57,10 +57,10 @@ export async function renderMyProfile() {
           </tr>
         `).join('')
       : `<tr><td colspan="4" class="text-center text-gray-500 py-4 border" style="width:100%;">No wins yet.</td></tr>`;
-
-    const profileContent = `
+    
+      const profileContent = `
       <div class="relative max-w-5xl mx-auto p-4 bg-gray-50 rounded-lg shadow-md">
-        <button id="logout-button" class="absolute top-4 right-4 bg-blue-500 hover:bg-blue-600 text-white text-sm px-4 py-2 rounded">
+        <button id="logout-button" class="absolute top-4 right-4 bg-black hover:bg-gray-800 text-white text-sm px-4 py-2 rounded">
           Logout
         </button>
         <div class="flex items-center mt-0 ml-4">
@@ -94,23 +94,23 @@ export async function renderMyProfile() {
       </div>
 
       <!-- Avatar Modal -->
-<div id="avatar-modal" class="fixed inset-0 z-50 hidden bg-black bg-opacity-50 backdrop-blur-sm flex items-center justify-center">
-  <div class="bg-white p-6 rounded-2xl shadow-xl w-full max-w-md relative">
-    <button id="close-modal" class="absolute top-3 right-3 text-gray-500 hover:text-gray-800 text-2xl font-bold">&times;</button>
-    <div class="text-center">
-      <img id="modal-avatar" src="${data.avatar.url}" alt="${data.avatar.alt}" class="mx-auto w-32 h-32 rounded-full border-4 border-gray-200 shadow mb-4">
-      <button id="change-avatar-btn" class="bg-blue-600 hover:bg-blue-700 text-white font-medium px-4 py-2 rounded-lg transition">
-        Change Avatar
-      </button>
-      <div id="avatar-input-container" class="mt-4 hidden">
-        <input type="url" id="new-avatar-url" placeholder="New avatar URL..." class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400 mb-2">
-        <button id="save-avatar" class="w-full bg-green-600 hover:bg-green-700 text-white font-medium py-2 rounded-lg transition">
-          Save Avatar
-        </button>
+ <div id="avatar-modal" class="fixed inset-0 z-50 hidden bg-black bg-opacity-50 backdrop-blur-sm flex items-center justify-center">
+      <div class="bg-white p-6 rounded-2xl shadow-xl w-full max-w-md relative">
+        <button id="close-modal" class="absolute top-3 right-3 text-gray-500 hover:text-gray-800 text-2xl font-bold">&times;</button>
+        <div class="text-center">
+          <img id="modal-avatar" src="${data.avatar.url}" alt="${data.avatar.alt}" class="mx-auto w-32 h-32 rounded-full border-4 border-gray-200 shadow mb-4">
+          <button id="change-avatar-btn" class="bg-black hover:bg-gray-800 text-white font-medium px-4 py-2 rounded-lg transition">
+            Change Avatar
+          </button>
+          <div id="avatar-input-container" class="mt-4 hidden">
+            <input type="url" id="new-avatar-url" placeholder="New avatar URL..." class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400 mb-2">
+            <button id="save-avatar" class="w-full bg-green-600 hover:bg-green-700 text-white font-medium py-2 rounded-lg transition">
+              Save Avatar
+            </button>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-</div>
 
     `;
 
