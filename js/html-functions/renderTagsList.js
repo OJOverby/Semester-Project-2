@@ -10,7 +10,7 @@ export async function renderTagsList(){
     tagsList.forEach(function(tag){
         tagsContainer.innerHTML +=`
          <a href="/tags/index.html?tag=${tag[0]}"><button 
-                class="px-4 py-2 m-2 bg-blue-500 text-white rounded-lg shadow-md hover:bg-blue-600 transition-colors">
+                class="px-4 py-2 m-2 bg-customOrange text-black rounded-lg shadow-md hover:bg-black hover:text-white transition-colors">
                 ${tag[0]}
             </button></a>`;
     })
