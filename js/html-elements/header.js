@@ -1,7 +1,7 @@
-import { addSVG } from "../../svg/addSVG.js";
-import { auctionSVG } from "../../svg/auctionSVG.js";
-import { homeSVG } from "../../svg/homeSVG.js";
-import { profileSVG } from "../../svg/profileSVG.js";
+import { addSVG } from "../../js/svg/addSVG.js";
+import { auctionSVG } from "../js/../svg/auctionSVG.js";
+import { homeSVG } from "../../js/svg/homeSVG.js";
+import { profileSVG } from "../js/../svg/profileSVG.js";
 import { load } from "../functions/load.js";
 
 
