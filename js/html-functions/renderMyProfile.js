@@ -58,7 +58,6 @@ export async function renderMyProfile() {
         `).join('')
       : `<tr><td colspan="4" class="text-center text-gray-500 py-4 border" style="width:100%;">No listings found.</td></tr>`;
 
-    // For each win, fetch the listing's bids and extract the highest
     const winsRows = data.wins.length > 0
       ? (await Promise.all(data.wins.map(async win => {
           try {
@@ -124,7 +123,6 @@ export async function renderMyProfile() {
         </div>
       </div>
 
-      <!-- Avatar Modal -->
       <div id="avatar-modal" class="fixed inset-0 z-50 hidden bg-black bg-opacity-50 backdrop-blur-sm flex items-center justify-center">
         <div class="bg-white p-6 rounded-2xl shadow-xl w-full max-w-md relative">
           <button id="close-modal" class="absolute top-3 right-3 text-gray-500 hover:text-gray-800 text-2xl font-bold">&times;</button>
@@ -146,7 +144,6 @@ export async function renderMyProfile() {
 
     profileContainer.innerHTML = profileContent;
 
-    // Avatar modal logic
     const avatarImg = document.getElementById("avatar-img");
     const modal = document.getElementById("avatar-modal");
     const closeModalBtn = document.getElementById("close-modal");
@@ -180,7 +177,6 @@ export async function renderMyProfile() {
       }
     });
 
-    // Initialize countdowns
     document.querySelectorAll(".countdown").forEach(span => {
       const endsAt = span.getAttribute("data-endsat");
       auctionCountdown(endsAt, span);
