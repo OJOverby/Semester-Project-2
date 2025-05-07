@@ -1,19 +1,20 @@
 import { auctionCountdown } from "../functions/auctionCountdown.js";
 import { getPopularTags } from "../functions/getPopularTags.js";
-import { fetchListings } from "../api-calls/fetchListings.js";
+import { fetchListingsEndingSoon } from "../api-calls/fetchListingsEndingSoon.js";
+import { findHighestBid } from "../functions/findHighestBid.js";
 
 export async function renderListingsCarousel() {
-  let listings = await fetchListings();
+  let listings = await fetchListingsEndingSoon();
   const container = document.querySelector(".listings-container");
 
   container.innerHTML = `
     <div class="relative">
-      <button class="prev-arrow absolute left-2 top-1/2 transform -translate-y-1/2 z-10 bg-white p-2 rounded-full shadow-md hover:bg-gray-100">
+      <button class="prev-arrow absolute left-2 top-1/2 transform -translate-y-1/2 z-10 bg-black text-white p-2 rounded-full shadow-md hover:bg-gray-800">
         ◀
       </button>
       <div class="carousel-container flex overflow-x-auto snap-x snap-mandatory space-x-4 p-4">
       </div>
-      <button class="next-arrow absolute right-2 top-1/2 transform -translate-y-1/2 z-10 bg-white p-2 rounded-full shadow-md hover:bg-gray-100">
+      <button class="next-arrow absolute right-2 top-1/2 transform -translate-y-1/2 z-10 bg-black text-white p-2 rounded-full shadow-md hover:bg-gray-800">
         ▶
       </button>
     </div>
@@ -39,14 +40,19 @@ export async function renderListingsCarousel() {
       "flex-col",
       "items-center"
     );
+
+    const formattedDate = new Date(listing.endsAt).toLocaleDateString("en-GB");
+    const highestBid = findHighestBid(listing.bids);
+
     listingElement.innerHTML = `
       <div>
-        <a href="/item/index.html?id=${listing.id}" class="text-xl font-semibold text-blue-600 hover:underline">
+        <a href="/item/index.html?id=${listing.id}" class="text-xl font-semibold text-black hover:underline">
           ${listing.title}
           <img src="${listing.media[0]?.url || './../../images/placeholder.jpeg'}" alt="Listing image" class="w-40 h-40 object-cover rounded-md mt-2">
         </a>
       </div>
-      <p class="text-gray-600">Ends at: ${listing.endsAt}</p>
+      <p class="text-gray-600">Ends at: ${formattedDate}</p>
+      <p class="text-gray-600">Highest bid: ${highestBid || "No bids yet"}</p>
       <p class="countdown text-red-500"></p>
     `;
 

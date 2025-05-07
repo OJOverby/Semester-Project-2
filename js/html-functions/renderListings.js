@@ -1,5 +1,6 @@
 import { auctionCountdown } from "../functions/auctionCountdown.js";
 import { fetchListings } from "../api-calls/fetchListings.js";
+import { findHighestBid } from "../functions/findHighestBid.js";
 
 export async function renderListings(APIfetch) {
   const listings = APIfetch;
@@ -27,12 +28,16 @@ export async function renderListings(APIfetch) {
       "items-center"
     );
 
+    const formattedDate = new Date(listing.endsAt).toLocaleDateString("en-GB");
+    const highestBid = findHighestBid(listing.bids);
+
     listingElement.innerHTML = `
-      <a href="/item/index.html?id=${listing.id}" class="text-lg font-semibold text-blue-600 hover:underline text-center">
+      <a href="/item/index.html?id=${listing.id}" class="text-lg font-semibold text-black hover:underline text-center">
         ${listing.title}
         <img src="${listing.media[0]?.url || './../../images/placeholder.jpeg'}" alt="Listing image" class="w-full h-48 object-cover rounded-md mt-2">
       </a>
-      <p class="text-gray-600 mt-2">Ends at: ${listing.endsAt}</p>
+      <p class="text-gray-600 mt-2">Ends at: ${formattedDate}</p>
+      <p class="text-gray-600">Highest bid: ${highestBid || "No bids yet"}</p>
       <p class="countdown text-red-500"></p>
     `;
 

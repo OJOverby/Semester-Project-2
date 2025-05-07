@@ -6,7 +6,7 @@ export async function fetchListings() {
     let isLastPage = false;
 
     while (!isLastPage) {
-        const endpoint = `/auction/listings?_active=true&page=${currentPage}`;
+        const endpoint = `/auction/listings?_active=true&_bids=true&page=${currentPage}`;
         const response = await fetch(BASE_API + endpoint);
 
         if (!response.ok) {
