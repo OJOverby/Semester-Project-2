@@ -9,12 +9,16 @@ export async function renderListingsCarousel() {
 
   container.innerHTML = `
     <div class="relative">
-      <button class="prev-arrow absolute left-2 top-1/2 transform -translate-y-1/2 z-10 bg-black text-white p-2 rounded-full shadow-md hover:bg-gray-800">
+      <button
+        class="prev-arrow absolute left-2 top-1/2 transform -translate-y-1/2 z-10 bg-black text-white p-2 rounded-full shadow-md hover:bg-customOrange focus:outline-none focus:ring-0"
+      >
         ◀
       </button>
       <div class="carousel-container flex overflow-x-auto snap-x snap-mandatory space-x-4 p-4">
       </div>
-      <button class="next-arrow absolute right-2 top-1/2 transform -translate-y-1/2 z-10 bg-black text-white p-2 rounded-full shadow-md hover:bg-gray-800">
+      <button
+        class="next-arrow absolute right-2 top-1/2 transform -translate-y-1/2 z-10 bg-black text-white p-2 rounded-full shadow-md hover:bg-customOrange focus:outline-none focus:ring-0"
+      >
         ▶
       </button>
     </div>
@@ -23,8 +27,9 @@ export async function renderListingsCarousel() {
   const carousel = container.querySelector(".carousel-container");
 
   listings.forEach(function (listing) {
-    const listingElement = document.createElement("div");
-    listingElement.classList.add(
+    const listingLink = document.createElement("a");
+    listingLink.href = `/item/index.html?id=${listing.id}`;
+    listingLink.classList.add(
       "snap-start",
       "min-w-[70%]",
       "md:min-w-[30%]",
@@ -33,33 +38,32 @@ export async function renderListingsCarousel() {
       "shadow-md",
       "rounded-lg",
       "relative",
-      "hover:shadow-lg",
+      "hover:shadow-2xl",
+      "hover:scale-[1.02]",
       "transition-shadow",
       "duration-300",
       "flex",
       "flex-col",
-      "items-center"
+      "items-center",
+      "text-black",
+      "no-underline"
     );
 
     const formattedDate = new Date(listing.endsAt).toLocaleDateString("en-GB");
     const highestBid = findHighestBid(listing.bids);
 
-    listingElement.innerHTML = `
-      <div>
-        <a href="/item/index.html?id=${listing.id}" class="text-xl font-semibold text-black hover:underline">
-          ${listing.title}
-          <img src="${listing.media[0]?.url || './../../images/placeholder.jpeg'}" alt="Listing image" class="w-40 h-40 object-cover rounded-md mt-2">
-        </a>
-      </div>
-      <p class="text-gray-600">Ends at: ${formattedDate}</p>
+    listingLink.innerHTML = `
+      <div class="text-xl font-semibold text-center">${listing.title}</div>
+      <img src="${listing.media[0]?.url || './../../images/placeholder.jpeg'}" alt="Listing image" class="w-40 h-40 object-cover rounded-md mt-2">
+      <p class="text-gray-600 mt-2">Ends at: ${formattedDate}</p>
       <p class="text-gray-600">Highest bid: ${highestBid || "No bids yet"}</p>
       <p class="countdown text-red-500"></p>
     `;
 
-    const countdown = listingElement.querySelector(".countdown");
+    const countdown = listingLink.querySelector(".countdown");
     auctionCountdown(listing.endsAt, countdown);
 
-    carousel.appendChild(listingElement);
+    carousel.appendChild(listingLink);
   });
 
   const prevArrow = container.querySelector(".prev-arrow");

@@ -10,6 +10,7 @@ import { searchListings } from "./html-functions/searchListings.js";
 import { loginListner } from "./functions/handleLogin.js"
 import { renderMyProfile } from "./html-functions/renderMyProfile.js";
 import { auctionListener } from "./functions/handleAuction.js";
+import { sortButtons } from "./functions/sortButtons.js";
 
 // Renders the header and the footer present at all sites
 header();
@@ -39,6 +40,7 @@ else if (path.startsWith("/item")) {
 } 
 else if (path.startsWith("/listings")) {
     renderListings(await fetchListings());
+    sortButtons();
 } else if (path.startsWith("/tags")) {
     tagListings(); 
 } else if (path.startsWith("/search")) {

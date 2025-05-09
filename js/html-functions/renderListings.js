@@ -14,36 +14,39 @@ export async function renderListings(APIfetch) {
   const grid = container.querySelector(".grid");
 
   listings.forEach((listing) => {
-    const listingElement = document.createElement("div");
-    listingElement.classList.add(
+    const listingLink = document.createElement("a");
+    listingLink.href = `/item/index.html?id=${listing.id}`;
+    listingLink.classList.add(
       "p-4",
       "bg-white",
       "shadow-md",
       "rounded-lg",
-      "hover:shadow-lg",
-      "transition-shadow",
+      "hover:shadow-2xl",
+      "hover:scale-[1.02]",
+      "transition",
       "duration-300",
+      "ease-in-out",
       "flex",
       "flex-col",
-      "items-center"
+      "items-center",
+      "text-black",
+      "no-underline"
     );
 
     const formattedDate = new Date(listing.endsAt).toLocaleDateString("en-GB");
     const highestBid = findHighestBid(listing.bids);
 
-    listingElement.innerHTML = `
-      <a href="/item/index.html?id=${listing.id}" class="text-lg font-semibold text-black hover:underline text-center">
-        ${listing.title}
-        <img src="${listing.media[0]?.url || './../../images/placeholder.jpeg'}" alt="Listing image" class="w-full h-48 object-cover rounded-md mt-2">
-      </a>
+    listingLink.innerHTML = `
+      <div class="text-lg font-semibold text-center">${listing.title}</div>
+      <img src="${listing.media[0]?.url || './../../images/placeholder.jpeg'}" alt="Listing image" class="w-full h-48 object-cover rounded-md mt-2">
       <p class="text-gray-600 mt-2">Ends at: ${formattedDate}</p>
       <p class="text-gray-600">Highest bid: ${highestBid || "No bids yet"}</p>
       <p class="countdown text-red-500"></p>
     `;
 
-    const countdown = listingElement.querySelector(".countdown");
+    const countdown = listingLink.querySelector(".countdown");
     auctionCountdown(listing.endsAt, countdown);
 
-    grid.appendChild(listingElement);
+    grid.appendChild(listingLink);
   });
 }

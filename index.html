@@ -9,28 +9,29 @@
 <body class="min-h-screen flex flex-col">
     <header id="header"></header>
     <main class="flex-1 bg-gray-100">
-      <section class="relative w-full h-96 mb-6 flex items-center justify-between bg-cover bg-center px-8" style="background-image: url('../images/treasure.jpg');">
-        <div class="w-1/2"></div>
-        <div class="w-1/2 flex flex-col items-start justify-center space-y-4">
-            <h1 class="text-white text-2xl font-bold">Your junk could be another man's treasure</h1>
-            <form class="flex items-center w-full max-w-md" action="/search/index.html" method="get">
+        <section class="relative w-full h-96 md:h-96 mb-6 flex items-center justify-center bg-cover bg-center px-4 md:px-8" style="background-image: url('../images/treasure.jpg');">
+            <div class="absolute inset-0 bg-black bg-opacity-40"></div> <!-- dark overlay for better text contrast -->
+          
+            <div class="relative z-10 w-full max-w-4xl flex flex-col md:flex-row items-center justify-between space-y-6 md:space-y-0 md:space-x-8">
+              <div class="md:w-1/2 text-center md:text-left">
+                <h1 class="text-white text-2xl md:text-3xl font-bold">Your junk could be another man's treasure</h1>
+              </div>
+              <form class="w-full md:w-1/2 flex items-center" action="/search/index.html" method="get">
                 <input
-                    class="form-input flex-1 h-10 px-4 rounded-l-full border border-gray-300 focus:outline-none focus:border-blue-500"
-                    type="search"
-                    placeholder="Search for treasure"
-                    aria-label="Search"
-                    id="search-input"
-                    name="search"
+                  class="flex-1 h-10 px-4 rounded-l-full border border-gray-300 focus:outline-none focus:border-blue-500"
+                  type="search"
+                  placeholder="Search for treasure"
+                  aria-label="Search"
+                  id="search-input"
+                  name="search"
                 />
                 <button type="submit" id="search-button" class="h-10 bg-customOrange hover:bg-orange-600 text-white px-4 rounded-r-full">
-                    Search
+                  Search
                 </button>
-            </form>
-            
-            
-        </div>
-    </section>
-    
+              </form>
+            </div>
+          </section>
+          
         <div class="tags-container flex flex-wrap justify-center items-center"></div>
         <div class="listings-container">
             <div class="flex justify-center items-center flex-1">
