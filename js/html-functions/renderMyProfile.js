@@ -2,6 +2,7 @@ import { fetchUser } from "../api-calls/fetchUser.js";
 import { load } from "../functions/load.js";
 import { auctionCountdown } from "../functions/auctionCountdown.js";
 import { handleLogout } from "../functions/handleLogout.js";
+import { updateAvatar } from "../api-calls/updateAvatar.js";
 
 export async function renderMyProfile() {
   const myProfile = load("profile");
@@ -101,7 +102,6 @@ export async function renderMyProfile() {
         }))).join('')
       : `<tr><td colspan="4" class="text-center text-gray-500 py-4 border">No wins yet.</td></tr>`;
 
-
     const profileContent = `
       <div class="relative max-w-5xl mx-auto p-4 bg-gray-50 rounded-lg shadow-md">
         <button id="logout-button" class="absolute top-4 right-4 bg-black hover:bg-gray-800 text-white text-sm px-4 py-2 rounded">
@@ -155,6 +155,8 @@ export async function renderMyProfile() {
       </div>
     `;
 
+    console.log(data);
+
     profileContainer.innerHTML = profileContent;
 
     breadcrumb.innerHTML = `
@@ -171,31 +173,40 @@ export async function renderMyProfile() {
     const modalAvatar = document.getElementById("modal-avatar");
 
     avatarImg.addEventListener("click", () => modal.classList.remove("hidden"));
+
     closeModalBtn.addEventListener("click", () => {
       modal.classList.add("hidden");
       avatarInputContainer.classList.add("hidden");
       newAvatarInput.value = "";
     });
-    changeAvatarBtn.addEventListener("click", () => avatarInputContainer.classList.toggle("hidden"));
-    saveAvatarBtn.addEventListener("click", () => {
-      const newUrl = newAvatarInput.value.trim();
-      if (newUrl) {
-        avatarImg.src = newUrl;
-        modalAvatar.src = newUrl;
+
+    changeAvatarBtn.addEventListener("click", () => {
+      avatarInputContainer.classList.toggle("hidden");
+    });
+
+  saveAvatarBtn.addEventListener("click", async () => {
+  const newUrl = newAvatarInput.value.trim();
+  if (newUrl) {
+    try {
+      await updateAvatar(profileName, newUrl); 
+      avatarImg.src = newUrl;
+      modalAvatar.src = newUrl;
+      avatarInputContainer.classList.add("hidden");
+      newAvatarInput.value = "";
+    } catch (err) {
+      console.error("Failed to update avatar:", err);
+      alert("Error updating avatar. Please use a valid public image URL.");
+    }
+  }
+});
+
+    modal.addEventListener("click", (e) => {
+      if (e.target === modal) {
+        modal.classList.add("hidden");
         avatarInputContainer.classList.add("hidden");
         newAvatarInput.value = "";
       }
     });
-
-    modal.addEventListener("click", (e) => {
-  if (e.target === modal) {
-    modal.classList.add("hidden");
-    avatarInputContainer.classList.add("hidden");
-    newAvatarInput.value = "";
-  }
-});
-
-
 
     document.querySelectorAll(".countdown").forEach(span => {
       const endsAt = span.getAttribute("data-endsat");

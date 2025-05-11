@@ -912,6 +912,14 @@ video {
   height: 24rem;
 }
 
+.h-\[60vh\]{
+  height: 60vh;
+}
+
+.h-full{
+  height: 100%;
+}
+
 .min-h-screen{
   min-height: 100vh;
 }
@@ -1073,6 +1081,10 @@ video {
 
 .gap-2{
   gap: 0.5rem;
+}
+
+.gap-4{
+  gap: 1rem;
 }
 
 .gap-6{
@@ -1526,11 +1538,6 @@ video {
   background-color: rgb(31 41 55 / var(--tw-bg-opacity, 1));
 }
 
-.hover\:bg-orange-600:hover{
-  --tw-bg-opacity: 1;
-  background-color: rgb(234 88 12 / var(--tw-bg-opacity, 1));
-}
-
 .hover\:text-blue-700:hover{
   --tw-text-opacity: 1;
   color: rgb(29 78 216 / var(--tw-text-opacity, 1));
@@ -1609,16 +1616,8 @@ video {
     position: static;
   }
 
-  .md\:z-auto{
-    z-index: auto;
-  }
-
   .md\:mb-0{
     margin-bottom: 0px;
-  }
-
-  .md\:ml-8{
-    margin-left: 2rem;
   }
 
   .md\:flex{
@@ -1633,20 +1632,16 @@ video {
     height: 24rem;
   }
 
+  .md\:h-auto{
+    height: auto;
+  }
+
   .md\:w-1\/2{
     width: 50%;
   }
 
-  .md\:w-auto{
-    width: auto;
-  }
-
   .md\:min-w-\[30\%\]{
     min-width: 30%;
-  }
-
-  .md\:flex-1{
-    flex: 1 1 0%;
   }
 
   .md\:grid-cols-3{
@@ -1663,6 +1658,10 @@ video {
 
   .md\:justify-around{
     justify-content: space-around;
+  }
+
+  .md\:gap-0{
+    gap: 0px;
   }
 
   .md\:space-x-8 > :not([hidden]) ~ :not([hidden]){

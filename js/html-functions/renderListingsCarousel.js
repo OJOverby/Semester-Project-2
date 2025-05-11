@@ -12,14 +12,14 @@ export async function renderListingsCarousel() {
       <button
         class="prev-arrow absolute left-2 top-1/2 transform -translate-y-1/2 z-10 bg-black text-white p-2 rounded-full shadow-md hover:bg-customOrange focus:outline-none focus:ring-0"
       >
-        ◀
+        ⯇
       </button>
       <div class="carousel-container flex overflow-x-auto snap-x snap-mandatory space-x-4 p-4">
       </div>
       <button
         class="next-arrow absolute right-2 top-1/2 transform -translate-y-1/2 z-10 bg-black text-white p-2 rounded-full shadow-md hover:bg-customOrange focus:outline-none focus:ring-0"
       >
-        ▶
+        ⯈
       </button>
     </div>
   `;
