@@ -47,6 +47,8 @@ else if (path.startsWith("/listings")) {
     searchListings();
 } else if (path.startsWith("/login")) {
     loginListner();
+} else if (path.startsWith("/register")) {
+    
 } else if (path.startsWith("/profile")) {
     renderMyProfile();
 } else if (path.startsWith("/createauction")) {

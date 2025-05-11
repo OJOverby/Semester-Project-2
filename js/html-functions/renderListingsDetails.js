@@ -33,7 +33,7 @@ export async function renderListingsDetails(itemID) {
 
     const bidButton = token
       ? `<button id="openBidModal" type="button" class="bg-black hover:bg-gray-800 text-white font-bold py-2 px-4 rounded" ${isExpired ? "disabled class=cursor-not-allowed opacity-50" : ""}>Place bid</button>`
-      : "";
+      :`Login bid on this item`;
 
     const tagsArray = item.data.tags.map(tag => `
       <a href="/tags/index.html?tag=${encodeURIComponent(tag)}">
