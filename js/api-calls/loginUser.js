@@ -17,5 +17,6 @@ export async function loginUser (email, password) {
     return profile
   }
  throw new Error("Could not login");
+ 
 }
   

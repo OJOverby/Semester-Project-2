@@ -11,6 +11,7 @@ import { loginListner } from "./functions/handleLogin.js"
 import { renderMyProfile } from "./html-functions/renderMyProfile.js";
 import { auctionListener } from "./functions/handleAuction.js";
 import { sortButtons } from "./functions/sortButtons.js";
+import { formValidation } from "./functions/formValidation.js";
 
 // Renders the header and the footer present at all sites
 header();
@@ -48,7 +49,7 @@ else if (path.startsWith("/listings")) {
 } else if (path.startsWith("/login")) {
     loginListner();
 } else if (path.startsWith("/register")) {
-    
+    formValidation();
 } else if (path.startsWith("/profile")) {
     renderMyProfile();
 } else if (path.startsWith("/createauction")) {
