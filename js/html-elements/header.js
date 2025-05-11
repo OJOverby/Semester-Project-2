@@ -2,6 +2,8 @@ import { addSVG } from "../../js/svg/addSVG.js";
 import { auctionSVG } from "../js/../svg/auctionSVG.js";
 import { homeSVG } from "../../js/svg/homeSVG.js";
 import { profileSVG } from "../js/../svg/profileSVG.js";
+import { searchSVG } from "../js/../svg/searchSVG.js";
+import { logoSVG } from "../svg/logoSVG.js";
 import { load } from "../functions/load.js";
 
 
@@ -12,6 +14,8 @@ export function header() {
     const homeIcon = homeSVG();
     const addIcon = addSVG();
     const profileIcon = profileSVG();
+    const searchIcon = searchSVG();
+    const logoIcon = logoSVG();
   
 
     const profileLoginLink = token
@@ -26,8 +30,10 @@ const createAuctionLink = token
 
     header.innerHTML = `
 <div class="flex items-center px-4 py-2 w-full shadow-md bg-customOrange relative">
-  <img class="h-7 w-7" src="/images/auction.svg">
+    <a href="/index.html" class="flex hover:text-white transition">
+        ${logoIcon}
   <h1 class="text-2xl font-semibold whitespace-nowrap">Bidlify</h1>
+  </a>
   <button id="menu-toggle" class="md:hidden ml-auto focus:outline-none">
     <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2"
          viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -46,8 +52,8 @@ const createAuctionLink = token
         id="search-input"
         name="search"
       />
-      <button type="submit" id="search-button" class="bg-transparent border-0">
-        <img class="searchicon h-5 w-5" src="../images/search.svg" alt="Search button">
+      <button type="submit" id="search-button" class="bg-transparent border-0 hover:text-white transition">
+        ${searchIcon}
       </button>
     </form>
     <a href="/index.html" class="flex items-center gap-2 px-4 py-2 md:p-0 hover:text-white transition">

@@ -6,6 +6,8 @@ export async function renderListings(APIfetch) {
   const listings = APIfetch;
   const container = document.querySelector(".grid-container");
     const breadcrumb = document.querySelector(".breadcrumb");
+    const dropdown = document.querySelector("#dropdown");
+
 
 
   container.innerHTML = `
@@ -50,8 +52,16 @@ export async function renderListings(APIfetch) {
     auctionCountdown(listing.endsAt, countdown);
 
     grid.appendChild(listingLink);
-            breadcrumb.innerHTML = `  
+
+       
+    const path = window.location.pathname;
+ if (path.startsWith("/listings")) {
+    dropdown.classList.remove("hidden");
+    breadcrumb.innerHTML = `  
     <li><a href="../index.html">Home</a></li>
-    <li><a href="#">Listings</a></li>`
+    <li><a href="#">Listings</a></li>`;
+}
+
   });
+
 }

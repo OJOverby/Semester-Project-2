@@ -5,6 +5,8 @@ export async function searchListings() {
     const params = new URLSearchParams(window.location.search);
     const searchTerm = params.get("search");
     const container = document.querySelector(".grid-container");
+        const breadcrumb = document.querySelector(".breadcrumb");
+
 
     if (!searchTerm) {
         container.innerHTML = `<div class="p-4 text-center text-gray-700">No search term provided.</div>`;
@@ -33,5 +35,9 @@ export async function searchListings() {
     } else {
         renderListings(activeListings);
         console.log(activeListings);
+          breadcrumb.innerHTML = `  
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="../listings/index.html">Listings</a></li>
+    <li><a href="#">${searchTerm}</a></li>`
     }
 }

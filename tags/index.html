@@ -11,6 +11,16 @@
 <main class="flex-1 pt-3 pb-2 max-w-screen-lg mx-auto px-4">
       <ul class="breadcrumb">
 </ul>
+   <div class="flex justify-end pt-2 hidden" id="dropdown">
+        <label for="sortDropdown" class="sr-only">Sort Listings</label>
+        <select
+          id="sortDropdown"
+          class="block w-48 rounded-md border border-gray-300 bg-white py-2 px-3 text-sm shadow-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
+        >
+          <option value="newest">Newest to Oldest</option>
+          <option value="oldest">Oldest to Newest</option>
+        </select>
+      </div>
         <div class="grid-container flex flex-wrap justify-center items-center">
             <div class="flex justify-center items-center flex-1">
                 <button disabled type="button" class="py-3 px-6 me-2 text-base font-medium text-gray-900 bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 inline-flex items-center">
