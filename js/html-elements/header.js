@@ -19,7 +19,7 @@ export function header() {
     : `<a href="/login/index.html" class="flex items-center gap-2 px-4 py-2 md:p-0 hover:text-white transition">${profileIcon}  Log In</a>`;
 
 const createAuctionLink = token
-     ? `<a href="/createauction/index.html" class="flex items-center px-4 py md:p-0 hover:text-white transition">
+     ? `<a href="/createauction/index.html" class="flex items-center gap-2 px-4 py md:p-0 hover:text-white transition">
        ${addIcon} Create Auction
      </a>`
   : '';
@@ -52,7 +52,7 @@ const createAuctionLink = token
     </form>
     <a href="/index.html" class="flex items-center gap-2 px-4 py-2 md:p-0 hover:text-white transition">
    ${homeIcon}  Home</a>
-    <a href="/listings/index.html" class="flex items-center px-4 py-2 md:p-0 hover:text-white transition">${auctionIcon} Listings</a>
+    <a href="/listings/index.html" class="flex gap-2 items-center px-4 py-2 md:p-0 hover:text-white transition">${auctionIcon} Listings</a>
     ${createAuctionLink}
     ${profileLoginLink}
   </nav>

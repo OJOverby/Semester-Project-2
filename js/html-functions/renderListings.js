@@ -5,6 +5,8 @@ import { findHighestBid } from "../functions/findHighestBid.js";
 export async function renderListings(APIfetch) {
   const listings = APIfetch;
   const container = document.querySelector(".grid-container");
+    const breadcrumb = document.querySelector(".breadcrumb");
+
 
   container.innerHTML = `
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6 p-4">
@@ -48,5 +50,8 @@ export async function renderListings(APIfetch) {
     auctionCountdown(listing.endsAt, countdown);
 
     grid.appendChild(listingLink);
+            breadcrumb.innerHTML = `  
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="#">Listings</a></li>`
   });
 }

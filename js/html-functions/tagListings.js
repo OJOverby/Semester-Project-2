@@ -6,10 +6,16 @@ export async function tagListings() {
   const params = new URLSearchParams(window.location.search);
   const tagTerm = params.get("tag");
   const tagEndpoint = baseEndpoint + encodeURIComponent(tagTerm);
+    const breadcrumb = document.querySelector(".breadcrumb");
+
 
   const listings = await fetchListing(tagEndpoint);
   renderListings(listings.data);
 
   const siteTitle = tagTerm;
   document.title = `${siteTitle} - Bidlify`;
+        breadcrumb.innerHTML = `  
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="../listings/index.html">Listings</a></li>
+    <li><a href="#">${siteTitle}</a></li>`
 }

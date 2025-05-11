@@ -1,3 +1,79 @@
 @tailwind base;
 @tailwind components;
+@tailwind base;
+@tailwind components;
+
+@layer components {
+  .breadcrumb {
+    @apply list-none overflow-hidden p-0 text-white text-base font-medium;
+    font-family: Helvetica, Arial, sans-serif;
+  }
+
+  .breadcrumb li {
+    float: left;
+  }
+
+  .breadcrumb li a {
+    text-decoration: none;
+    padding: 0px 0 0px 55px;
+    background: #000;
+    position: relative;
+    display: block;
+    float: left;
+  }
+
+  .breadcrumb li a::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 100%;
+    margin-top: -25px;
+    width: 0;
+    height: 0;
+    border-top: 25px solid transparent;
+    border-bottom: 25px solid transparent;
+    border-left: 20px solid #000;
+    z-index: 2;
+  }
+
+  .breadcrumb li a::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 100%;
+    margin-top: -25px;
+    margin-left: 1px;
+    width: 0;
+    height: 0;
+    border-top: 25px solid transparent;
+    border-bottom: 25px solid transparent;
+    border-left: 20px solid #fff;
+    z-index: 1;
+  }
+
+  .breadcrumb li:first-child a {
+    padding-left: 20px;
+  }
+
+  .breadcrumb li:last-child a {
+    pointer-events: none;
+    cursor: default;
+  }
+
+  .breadcrumb li:last-child a::before {
+    display: none;
+  }
+
+  .breadcrumb li a:hover {
+    background: #222;
+  }
+
+  .breadcrumb li a:hover::after {
+    border-left-color: #222 !important;
+  }
+}
+
+
+@tailwind utilities;
+
 @tailwind utilities;

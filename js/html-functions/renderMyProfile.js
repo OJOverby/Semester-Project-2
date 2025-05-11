@@ -6,6 +6,7 @@ import { handleLogout } from "../functions/handleLogout.js";
 export async function renderMyProfile() {
   const myProfile = load("profile");
   const profileName = myProfile.name;
+  const breadcrumb = document.querySelector(".breadcrumb");
 
   try {
     const response = await fetchUser(`/auction/profiles/${profileName}?_listings=true&_wins=true`);
@@ -143,6 +144,9 @@ export async function renderMyProfile() {
     `;
 
     profileContainer.innerHTML = profileContent;
+        breadcrumb.innerHTML = `  
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="#">Profile</a></li>`
 
     const avatarImg = document.getElementById("avatar-img");
     const modal = document.getElementById("avatar-modal");

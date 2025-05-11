@@ -18,6 +18,8 @@ export async function renderListingsDetails(itemID) {
     const highestBid = findHighestBid(item.data.bids);
     const siteTitle = item.data.title;
     document.title = `${siteTitle} - Bidlify`;
+    const breadcrumb = document.querySelector(".breadcrumb");
+
 
     if (!container) {
       console.error("Container not found");
@@ -38,7 +40,7 @@ export async function renderListingsDetails(itemID) {
       <div class="flex max-w-3xl shadow-lg rounded-xl overflow-hidden bg-white">
         <img class="w-1/2 object-cover" src="${item.data.media[0]?.url || './../../images/placeholder.jpeg'}" alt="Listing image">
         <div class="w-1/2 p-6 flex flex-col justify-center">
-          <h3 class="text-2xl font-semibold mb-2">${item.data.title || 'Untitled Post'}</h3>
+          <h3 class="text-2xl font-semibold mb-2">${item.data.title}</h3>
           <p class="text-gray-600 mb-2">${item.data.description || 'The seller did not include a description, but it is probably awsome'}</p>
           <p class="text-gray-600">Highest bid: ${highestBid || 'No bids yet'}</p>
           <p class="countdown text-red-500 mb-2"></p>
@@ -46,7 +48,10 @@ export async function renderListingsDetails(itemID) {
         </div>
       </div>
     `;
-
+        breadcrumb.innerHTML = `  
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="../listings/index.html">Listings</a></li>
+    <li><a href="#">${item.data.title}</a></li>`
     const countdown = container.querySelector(".countdown");
     auctionCountdown(item.data.endsAt, countdown);
 
