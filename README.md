@@ -18,7 +18,7 @@ On the site you can create an account, and post items for others to bid on and b
 1. Clone the repo:
 
 ```bash
-git clone 
+git clone https://github.com/OJOverby/Semester-Project-2.git
 ```
 
 2. Install the dependencies:
